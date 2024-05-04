@@ -1,0 +1,44 @@
+name: VersionCheck
+
+on: [push, pull_request]
+
+jobs:
+  TestVersions:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        family: [C0, F1, MP1]
+        # family: [C0, F0, F1, F2, F3, F4, F7, G0, G4, H5, H7, L0, L1, L4, L5, U0, U5, WB, WL, MP1]
+      fail-fast: false
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Get Versions from this repos
+        run: |
+          FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]') \
+          family_src_file=${{runner.workspace}}/cmake/stm32/${{FAMILY_L}}.cmake \
+          cube_version=$(sed -rn 's@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file}) \
+          echo "Cube version: ${cube_version}" \
+          cmsis_version=$(sed -rn 's@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file}) \
+          echo "CMSIS version: ${cmsis_version}" \
+          hal_version=$(sed -rn 's@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file}) \
+          echo "HAL version: ${cmsis_version}"
+
+      - name: Get Cube version
+        run: |  
+          http_code=$(curl --request GET \
+            --silent --write-out "%{http_code}" \
+            --url "https://api.github.com/repos/STMicroelectronics/STM32Cube${{matrix.family}}/tags" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            -o body.json ) \
+          if [[ ${http_code} != 200 ]]; then \
+            echo "Failed (${http_code}) to get https://api.github.com/repos/STMicroelectronics/STM32Cube${{matrix.family}}/tags"; \
+            exit 1; \
+          else \
+            latest_cube_version=$(jq '.[0].name' body.json) \
+            echo "Latest Cube Version: ${latest_cube_version}" \
+          fi \
