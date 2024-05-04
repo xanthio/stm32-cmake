@@ -20,13 +20,13 @@ jobs:
         run: |
           FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           family_src_file=${GITHUB_WORKSPACE}/cmake/stm32/${FAMILY_L}.cmake;
-          cube_version=$(sed -rn "s@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
+          cube_version=$(sed -rn "s@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\"\2\"@p" ${family_src_file});
           echo "Cube version: ${cube_version}";
           echo "CUBE=${cube_version}" >> $GITHUB_OUTPUT;
-          cmsis_version=$(sed -rn "s@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
+          cmsis_version=$(sed -rn "s@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\"\2\"@p" ${family_src_file});
           echo "CMSIS version: ${cmsis_version}";
           echo "CMSIS=${cmsis_version}" >> $GITHUB_OUTPUT;
-          hal_version=$(sed -rn "s@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
+          hal_version=$(sed -rn "s@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\"\2\"@p" ${family_src_file});
           echo "HAL version: ${hal_version}";
           echo "HAL=${hal_version}" >> $GITHUB_OUTPUT;
 
