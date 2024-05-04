@@ -19,7 +19,7 @@ jobs:
       - name: Get Versions from this repos
         run: |
           FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]') \
-          family_src_file=${{runner.workspace}}/cmake/stm32/${FAMILY_L}.cmake \
+          family_src_file=${GITHUB_WORKSPACE}/cmake/stm32/${FAMILY_L}.cmake \
           cube_version=$(sed -rn 's@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file}) \
           echo "Cube version: ${cube_version}" \
           cmsis_version=$(sed -rn 's@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file}) \
