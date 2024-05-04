@@ -7,8 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        family: [C0, F1, MP1]
-        # family: [C0, F0, F1, F2, F3, F4, F7, G0, G4, H5, H7, L0, L1, L4, L5, U0, U5, WB, WL, MP1]
+        family: [C0, F0, F1, F2, F3, F4, F7, G0, G4, H5, H7, L0, L1, L4, L5, U0, U5, WB, WL, MP1]
       fail-fast: false
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
