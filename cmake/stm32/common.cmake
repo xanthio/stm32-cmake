@@ -1,3 +1,4 @@
+include(stm32/utilities)
 include(stm32/devices)
 
 list(REMOVE_DUPLICATES STM32_SUPPORTED_FAMILIES_LONG_NAME)
@@ -373,6 +374,3 @@ if(NOT (TARGET STM32::Nano::FloatScan))
         $<$<C_COMPILER_ID:GNU>:-Wl,--undefined,_scanf_float>
     )
 endif()
-
-include(stm32/utilities)
-
