@@ -20,13 +20,13 @@ jobs:
         run: |
           FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           family_src_file=${GITHUB_WORKSPACE}/cmake/stm32/${FAMILY_L}.cmake;
-          cube_version=$(sed -rn 's@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file} | tr -d '\n');
+          cube_version=$(sed -rn "s@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
           echo "Cube version: ${cube_version}";
           echo "CUBE=${cube_version}" >> $GITHUB_OUTPUT;
-          cmsis_version=$(sed -rn 's@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file} | tr -d '\n');
+          cmsis_version=$(sed -rn "s@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
           echo "CMSIS version: ${cmsis_version}";
           echo "CMSIS=${cmsis_version}" >> $GITHUB_OUTPUT;
-          hal_version=$(sed -rn 's@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file} | tr -d '\n');
+          hal_version=$(sed -rn "s@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\n\2\n@p" ${family_src_file});
           echo "HAL version: ${hal_version}";
           echo "HAL=${hal_version}" >> $GITHUB_OUTPUT;
 
@@ -93,21 +93,21 @@ jobs:
           if [ x"${{ steps.get-repo-versions.outputs.CUBE }}" != x"${{ steps.get-latest-cube.outputs.VERSION }}" ]; then
             cube_missmatch=1;
             echo "Cube has new version ${{ steps.get-latest-cube.outputs.VERSION}}";
-            echo "while version ${{ steps.get-repo-versions.outputs.CUBE }} is used";
+            echo "while version \"${{ steps.get-repo-versions.outputs.CUBE }}\" is used";
           else
             cube_missmatch=0;
           fi
           if [ x"${{ steps.get-repo-versions.outputs.CMSIS}}" != x"${{ steps.get-latest-cmsis.outputs.VERSION }}" ]; then
             cmsis_missmatch=1;
             echo "CMSIS has new version ${{ steps.get-latest-cmsis.outputs.VERSION}}";
-            echo "while version ${{ steps.get-repo-versions.outputs.CMSIS }} is used";
+            echo "while version \"${{ steps.get-repo-versions.outputs.CMSIS }}\" is used";
           else
             cmsis_missmatch=0;
           fi
           if [ x"${{ steps.get-repo-versions.outputs.HAL }}" != x"${{ steps.get-latest-hal.outputs.VERSION }}" ]; then
             hal_missmatch=1;
             echo "HAL has new version ${{ steps.get-latest-hal.outputs.VERSION}}";
-            echo "while version ${{ steps.get-repo-versions.outputs.HAL }} is used";
+            echo "while version \"${{ steps.get-repo-versions.outputs.HAL }}\" is used";
           else
             hal_missmatch=0;
           fi
