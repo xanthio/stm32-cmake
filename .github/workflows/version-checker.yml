@@ -74,7 +74,7 @@ jobs:
           FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           http_code=$(curl --request GET \
             --silent --write-out "%{http_code}" \
-            --url "https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags" \
+            --url "https://api.github.com/repos/STMicroelectronics/stm32${FAMILY_L}xx_hal_driver/tags" \
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer $GH_TOKEN" \
             -o body.json ); \
