@@ -35,7 +35,7 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer $GH_TOKEN" \
             -o body.json ); \
-          if [[ ${http_code} != 200 ]] \
+          if [ x${http_code} -ne x"200" ] \
           then \
             echo "Failed (${http_code}) to get https://api.github.com/repos/STMicroelectronics/STM32Cube${{matrix.family}}/tags"; \
             exit 1; \
