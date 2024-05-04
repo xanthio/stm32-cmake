@@ -1,6 +1,8 @@
 name: VersionCheck
 
-on: [push, pull_request]
+run-name: "Check stm32-cmake use up to date ST repositories"
+
+on: [pull_request]
 
 jobs:
   TestVersions:
