@@ -180,7 +180,7 @@ foreach(FAMILY ${STM32_FETCH_FAMILIES})
 		GIT_PROGRESS   TRUE
 	)
 
-    if(CMSIS_VERSION STREQUAL cube)
+    if(CMSIS_${FAMILY}_VERSION STREQUAL cube)
         set(STM32_USE_CMSIS_FROM_CUBE_${FAMILY} ON)
     else()
         FetchContent_Declare(
@@ -191,7 +191,7 @@ foreach(FAMILY ${STM32_FETCH_FAMILIES})
         )
     endif()
     
-    if(HAL_VERSION STREQUAL cube)
+    if(HAL_${FAMILY}_VERSION STREQUAL cube)
         set(STM32_USE_HAL_FROM_CUBE_${FAMILY} ON)
     else()
         FetchContent_Declare(
