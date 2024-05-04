@@ -35,11 +35,10 @@ jobs:
             --header "Accept: application/vnd.github+json" \
             --header "Authorization: Bearer $GH_TOKEN" \
             -o body.json ); \
-          if [ "${http_code}" -ne "200" ] \
-          then \
+          if [ "${http_code}" -ne "200" ]; then \
             echo "Failed (${http_code}) to get https://api.github.com/repos/STMicroelectronics/STM32Cube${{matrix.family}}/tags"; \
             exit 1; \
           else \
             latest_cube_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' ); \
             echo "Latest Cube Version: ${latest_cube_version}"; \
-          fi \
+          fi
