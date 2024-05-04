@@ -91,21 +91,21 @@ jobs:
 
       - name: Compare versions
         run: |
-          if [ x${{ steps.get-repo-versions.outputs.CUBE }} -ne x ${{ steps.get-latest-cube.outputs.VERSION }} ]; then
+          if [ x${{ steps.get-repo-versions.outputs.CUBE }} != x${{ steps.get-latest-cube.outputs.VERSION }} ]; then
             cube_missmatch=1;
             echo "Cube has new version \"${{ steps.get-latest-cube.outputs.VERSION}}\"";
             echo "while version \"${{ steps.get-repo-versions.outputs.CUBE }}\" is used";
           else
             cube_missmatch=0;
           fi
-          if [ x${{ steps.get-repo-versions.outputs.CMSIS}} -ne x ${{ steps.get-latest-cmsis.outputs.VERSION }} ]; then
+          if [ x${{ steps.get-repo-versions.outputs.CMSIS}} != x${{ steps.get-latest-cmsis.outputs.VERSION }} ]; then
             cmsis_missmatch=1;
             echo "CMSIS has new version \"${{ steps.get-latest-cmsis.outputs.VERSION}}\"";
             echo "while version \"${{ steps.get-repo-versions.outputs.CMSIS }}\" is used";
           else
             cmsis_missmatch=0;
           fi
-          if [ x${{ steps.get-repo-versions.outputs.HAL }} -ne x ${{ steps.get-latest-hal.outputs.VERSION }} ]; then
+          if [ x${{ steps.get-repo-versions.outputs.HAL }} != x${{ steps.get-latest-hal.outputs.VERSION }} ]; then
             hal_missmatch=1;
             echo "Cube has new version \"${{ steps.get-latest-cube.outputs.VERSION}}\"";
             echo "while version \"${{ steps.get-repo-versions.outputs.HAL }}\" is used";
