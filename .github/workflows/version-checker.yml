@@ -42,3 +42,37 @@ jobs:
             latest_cube_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' ); \
             echo "Latest Cube Version: ${latest_cube_version}"; \
           fi
+
+      - name: Get CMSIS version
+        run: |  
+          http_code=$(curl --request GET \
+            --silent --write-out "%{http_code}" \
+            --url "https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            -o body.json ); \
+          if [ "${http_code}" -ne "200" ]; then \
+            echo "Failed (${http_code}) to get https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags"; \
+            echo "Assume we can use the one from cube"; \
+            latest_cmsis_version="cube"; \
+          else \
+            latest_cmsis_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' ); \
+          fi \
+          echo "Latest CMSIS Version: ${latest_cmsis_version}";
+
+      - name: Get HAL version
+        run: |  
+          http_code=$(curl --request GET \
+            --silent --write-out "%{http_code}" \
+            --url "https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            -o body.json ); \
+          if [ "${http_code}" -ne "200" ]; then \
+            echo "Failed (${http_code}) to get https://api.github.com/repos/STMicroelectronics/stm32${FAMILY_L}xx_hal_driver/tags"; \
+            echo "Assume we can use the one from cube"; \
+            latest_hal_version="cube"; \
+          else \
+            latest_hal_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' ); \
+          fi \
+          echo "Latest HAL Version: ${latest_hal_version}";
