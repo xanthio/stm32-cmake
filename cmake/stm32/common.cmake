@@ -1,7 +1,4 @@
-include(stm32/utilities)
 include(stm32/devices)
-
-list(REMOVE_DUPLICATES STM32_SUPPORTED_FAMILIES_LONG_NAME)
 
 foreach(FAMILY ${STM32_SUPPORTED_FAMILIES_LONG_NAME})
     # append short names (F0, F1, H7_M4, ...) to STM32_SUPPORTED_FAMILIES_SHORT_NAME
