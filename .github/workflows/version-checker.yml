@@ -17,18 +17,23 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get Versions from this repos
+        id: get-repo-versions
         run: |
           FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           family_src_file=${GITHUB_WORKSPACE}/cmake/stm32/${FAMILY_L}.cmake;
           cube_version=$(sed -rn 's@set\(CUBE_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file});
           echo "Cube version: ${cube_version}";
+          echo "CUBE=${cube_version}" >> $GITHUB_OUTPUT
           cmsis_version=$(sed -rn 's@set\(CMSIS_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file});
           echo "CMSIS version: ${cmsis_version}";
+          echo "CMSIS=${cmsis_version}" >> $GITHUB_OUTPUT
           hal_version=$(sed -rn 's@set\(HAL_${{matrix.family}}_VERSION(\s+)(.*)\)@\2@p' ${family_src_file});
-          echo "HAL version: ${cmsis_version}";
+          echo "HAL version: ${hal_version}";
+          echo "HAL=${hal_version}" >> $GITHUB_OUTPUT
 
       - name: Get Cube version
-        run: |  
+        id: get-latest-cube
+        run: |
           http_code=$(curl --request GET \
             --silent --write-out "%{http_code}" \
             --url "https://api.github.com/repos/STMicroelectronics/STM32Cube${{matrix.family}}/tags" \
@@ -42,9 +47,12 @@ jobs:
             latest_cube_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' );
             echo "Latest Cube Version: ${latest_cube_version}";
           fi
+          echo "VERSION=${latest_cube_version}" >> $GITHUB_OUTPUT
 
       - name: Get CMSIS version
-        run: |  
+        id: get-latest-cmsis
+        run: |
+          FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           http_code=$(curl --request GET \
             --silent --write-out "%{http_code}" \
             --url "https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags" \
@@ -59,9 +67,12 @@ jobs:
             latest_cmsis_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' );
           fi
           echo "Latest CMSIS Version: ${latest_cmsis_version}";
+          echo "VERSION=${latest_cmsis_version}" >> $GITHUB_OUTPUT
 
       - name: Get HAL version
-        run: |  
+        id: get-latest-hal
+        run: |
+          FAMILY_L=$(echo "${{matrix.family}}" | tr '[:upper:]' '[:lower:]');
           http_code=$(curl --request GET \
             --silent --write-out "%{http_code}" \
             --url "https://api.github.com/repos/STMicroelectronics/cmsis_device_${FAMILY_L}/tags" \
@@ -76,3 +87,31 @@ jobs:
             latest_hal_version=$(jq '.[0].name' body.json | sed -rn 's@\"@@gp' );
           fi
           echo "Latest HAL Version: ${latest_hal_version}";
+          echo "VERSION=${latest_hal_version}" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        run: |
+          if [ x${{ steps.get-repo-versions.outputs.CUBE }} -ne x ${{ steps.get-latest-cube.outputs.VERSION }} ]; then
+            cube_missmatch=1;
+            echo "Cube has new version \"${{ steps.get-latest-cube.outputs.VERSION}}\"";
+            echo "while version \"${{ steps.get-repo-versions.outputs.CUBE }}\" is used";
+          else
+            cube_missmatch=0;
+          fi
+          if [ x${{ steps.get-repo-versions.outputs.CMSIS}} -ne x ${{ steps.get-latest-cmsis.outputs.VERSION }} ]; then
+            cmsis_missmatch=1;
+            echo "CMSIS has new version \"${{ steps.get-latest-cmsis.outputs.VERSION}}\"";
+            echo "while version \"${{ steps.get-repo-versions.outputs.CMSIS }}\" is used";
+          else
+            cmsis_missmatch=0;
+          fi
+          if [ x${{ steps.get-repo-versions.outputs.HAL }} -ne x ${{ steps.get-latest-hal.outputs.VERSION }} ]; then
+            hal_missmatch=1;
+            echo "Cube has new version \"${{ steps.get-latest-cube.outputs.VERSION}}\"";
+            echo "while version \"${{ steps.get-repo-versions.outputs.HAL }}\" is used";
+          else
+            hal_missmatch=0;
+          fi
+          if [ "${cube_missmatch}"" -ne "0" ] || [ "${cmsis_missmatch}"" -ne "0" ] || [ "${hal_missmatch}"" -ne "0" ]; then
+            exit 1;
+          fi
