@@ -23,3 +23,23 @@ target_compile_options(STM32::C0 INTERFACE
 target_link_options(STM32::C0 INTERFACE 
     -mcpu=cortex-m0plus
 )
+
+list(APPEND STM32_ALL_DEVICES
+    C011D6
+    C011F4
+    C011F6
+    C011J4
+    C011J6
+    C031C4
+    C031C6
+    C031F4
+    C031F6
+    C031G4
+    C031G6
+    C031K4
+    C031K6
+)
+
+list(APPEND STM32_SUPPORTED_FAMILIES_LONG_NAME
+    STM32C0
+)
