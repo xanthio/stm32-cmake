@@ -1,0 +1,42 @@
+[
+  {
+    "name": "v1.3.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/zipball/refs/tags/v1.3.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/tarball/refs/tags/v1.3.0",
+    "commit": {
+      "sha": "e3966ab429c1711e5dd2b40918e1d987eed7a249",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/commits/e3966ab429c1711e5dd2b40918e1d987eed7a249"
+    },
+    "node_id": "MDM6UmVmMzE0MjU0NDMxOnJlZnMvdGFncy92MS4zLjA="
+  },
+  {
+    "name": "v1.2.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/zipball/refs/tags/v1.2.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/tarball/refs/tags/v1.2.0",
+    "commit": {
+      "sha": "abf07be83a498000f9131f6220adde8266356dd0",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/commits/abf07be83a498000f9131f6220adde8266356dd0"
+    },
+    "node_id": "MDM6UmVmMzE0MjU0NDMxOnJlZnMvdGFncy92MS4yLjA="
+  },
+  {
+    "name": "v1.1.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/zipball/refs/tags/v1.1.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/tarball/refs/tags/v1.1.0",
+    "commit": {
+      "sha": "bd841beececf693e2507e82b8eabc15ce09905f8",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/commits/bd841beececf693e2507e82b8eabc15ce09905f8"
+    },
+    "node_id": "MDM6UmVmMzE0MjU0NDMxOnJlZnMvdGFncy92MS4xLjA="
+  },
+  {
+    "name": "v1.0.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/zipball/refs/tags/v1.0.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/tarball/refs/tags/v1.0.0",
+    "commit": {
+      "sha": "5dc2a4bc1a9506b7100a1a5cccf8ba411f5d9606",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32wlxx_hal_driver/commits/5dc2a4bc1a9506b7100a1a5cccf8ba411f5d9606"
+    },
+    "node_id": "MDM6UmVmMzE0MjU0NDMxOnJlZnMvdGFncy92MS4wLjA="
+  }
+]
