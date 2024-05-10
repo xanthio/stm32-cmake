@@ -1,0 +1,12 @@
+[
+  {
+    "name": "v1.0.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32u0xx_hal_driver/zipball/refs/tags/v1.0.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32u0xx_hal_driver/tarball/refs/tags/v1.0.0",
+    "commit": {
+      "sha": "8a3e984efa69f3d0bf240e853b1cae8f8f45b5a7",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32u0xx_hal_driver/commits/8a3e984efa69f3d0bf240e853b1cae8f8f45b5a7"
+    },
+    "node_id": "REF_kwDOLjcLg7ByZWZzL3RhZ3MvdjEuMC4w"
+  }
+]
