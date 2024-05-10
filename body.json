@@ -1,0 +1,62 @@
+[
+  {
+    "name": "v1.4.5",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.5",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.5",
+    "commit": {
+      "sha": "0775960fa7cf55e54dced6237b692a0d7cf76922",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/0775960fa7cf55e54dced6237b692a0d7cf76922"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjU="
+  },
+  {
+    "name": "v1.4.4",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.4",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.4",
+    "commit": {
+      "sha": "919c1714f0e605c96e312675d8a14c421881d2ec",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/919c1714f0e605c96e312675d8a14c421881d2ec"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjQ="
+  },
+  {
+    "name": "v1.4.3",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.3",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.3",
+    "commit": {
+      "sha": "9ee84a7ac1b901fbe57f167a4bd2ae0b2d95c4fb",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/9ee84a7ac1b901fbe57f167a4bd2ae0b2d95c4fb"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjM="
+  },
+  {
+    "name": "v1.4.2",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.2",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.2",
+    "commit": {
+      "sha": "44efc446fa69ed8344e7fd966e68ed11043b35d9",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/44efc446fa69ed8344e7fd966e68ed11043b35d9"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjI="
+  },
+  {
+    "name": "v1.4.1",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.1",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.1",
+    "commit": {
+      "sha": "4b4f25fea2db1719a138c2331e0ca5e892bec31b",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/4b4f25fea2db1719a138c2331e0ca5e892bec31b"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjE="
+  },
+  {
+    "name": "v1.4.0",
+    "zipball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/zipball/refs/tags/v1.4.0",
+    "tarball_url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/tarball/refs/tags/v1.4.0",
+    "commit": {
+      "sha": "3a960be3b9474227192d5ed85acf1524e9b02ff3",
+      "url": "https://api.github.com/repos/STMicroelectronics/stm32l1xx_hal_driver/commits/3a960be3b9474227192d5ed85acf1524e9b02ff3"
+    },
+    "node_id": "MDM6UmVmMjM3MDE2OTA5OnJlZnMvdGFncy92MS40LjA="
+  }
+]
