@@ -28,6 +28,13 @@ jobs:
       working-directory: ${{runner.workspace}}/tests/fetch/build
       run: cmake -DTEST_FAMILIES=${{ matrix.family }} $GITHUB_WORKSPACE/tests/fetch/
 
+    - name: Create HAL config file
+      shell: bash
+      working-directory: ${{runner.workspace}}/tests/fetch/build
+      run: |
+        FAMILY_L=$(echo "${{ matrix.family }}" | tr '[:upper:]' '[:lower:]')
+        cp _deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h stm32${FAMILY_L}xx_hal_conf.h
+
     - name: Build tests/fetch
       working-directory: ${{runner.workspace}}/tests/fetch/build
       shell: bash
@@ -56,6 +63,13 @@ jobs:
       shell: bash
       working-directory: ${{runner.workspace}}/tests/hal/build
       run: cmake -DTEST_FAMILIES=${{ matrix.family }} -DFETCH_ST_SOURCES=TRUE $GITHUB_WORKSPACE/tests/hal/
+
+    - name: Create HAL config file
+      shell: bash
+      working-directory: ${{runner.workspace}}/tests/hal/build
+      run: |
+        FAMILY_L=$(echo "${{ matrix.family }}" | tr '[:upper:]' '[:lower:]')
+        cp _deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h stm32${FAMILY_L}xx_hal_conf.h
 
     - name: Build tests/hal
       working-directory: ${{runner.workspace}}/tests/hal/build
