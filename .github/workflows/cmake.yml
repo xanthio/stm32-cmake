@@ -33,8 +33,17 @@ jobs:
       working-directory: ${{runner.workspace}}/tests/fetch/build
       run: |
         FAMILY_L=$(echo "${{ matrix.family }}" | tr '[:upper:]' '[:lower:]')
-        cp _deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h stm32${FAMILY_L}xx_hal_conf.h
-
+        HAL_CONF_FILE=stm32${FAMILY_L}xx_hal_conf.h
+        HAL_CONF_TEMPLATE=_deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h
+        CUBE_HAL_CONF_TEMPLATE=_deps/stm32cube${FAMILY_L}-src/Drivers/STM32${{ matrix.family }}xx_HAL_Driver/Inc/stm32${FAMILY_L}xx_hal_conf_template.h
+        if [ -f ${HAL_CONF_TEMPLATE} ]; then
+          cp ${HAL_CONF_TEMPLATE} ${HAL_CONF_FILE}
+        elif [ -f ${CUBE_HAL_CONF_TEMPLATE} ]; then
+          cp ${CUBE_HAL_CONF_TEMPLATE} ${HAL_CONF_FILE}
+        else
+          exit 1
+        fi
+  
     - name: Build tests/fetch
       working-directory: ${{runner.workspace}}/tests/fetch/build
       shell: bash
@@ -69,7 +78,16 @@ jobs:
       working-directory: ${{runner.workspace}}/tests/hal/build
       run: |
         FAMILY_L=$(echo "${{ matrix.family }}" | tr '[:upper:]' '[:lower:]')
-        cp _deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h stm32${FAMILY_L}xx_hal_conf.h
+        HAL_CONF_FILE=stm32${FAMILY_L}xx_hal_conf.h
+        HAL_CONF_TEMPLATE=_deps/stm32-hal-${FAMILY_L}-src/Inc/stm32${FAMILY_L}xx_hal_conf_template.h
+        CUBE_HAL_CONF_TEMPLATE=_deps/stm32cube${FAMILY_L}-src/Drivers/STM32${{ matrix.family }}xx_HAL_Driver/Inc/stm32${FAMILY_L}xx_hal_conf_template.h
+        if [ -f ${HAL_CONF_TEMPLATE} ]; then
+          cp ${HAL_CONF_TEMPLATE} ${HAL_CONF_FILE}
+        elif [ -f ${CUBE_HAL_CONF_TEMPLATE} ]; then
+          cp ${CUBE_HAL_CONF_TEMPLATE} ${HAL_CONF_FILE}
+        else
+          exit 1
+        fi
 
     - name: Build tests/hal
       working-directory: ${{runner.workspace}}/tests/hal/build
