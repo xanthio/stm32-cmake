@@ -20,8 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       
-    - name: Install ARM toolchain
-      run: sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi 
+    - uses: ./.github/actions/installToolchain
 
     - name: Create build directory for tests/fetch
       run: cmake -E make_directory ${{runner.workspace}}/tests/fetch/build
@@ -46,8 +45,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Install ARM toolchain
-      run: sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi 
+    - uses: ./.github/actions/installToolchain
 
     - name: Create build directory for tests/cmsis
       run: cmake -E make_directory ${{runner.workspace}}/tests/cmsis/build
@@ -75,8 +73,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Install ARM toolchain
-      run: sudo apt-get install gcc-arm-none-eabi binutils-arm-none-eabi 
+    - uses: ./.github/actions/installToolchain
 
     - name: Create build directory for tests/hal
       run: cmake -E make_directory ${{runner.workspace}}/tests/hal/build
